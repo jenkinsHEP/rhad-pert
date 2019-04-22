@@ -1,0 +1,16 @@
+      
+      common/par/ alpha,alphasmz,api,mz,qel,
+     &     vup,vdown,vstrange,vcharm,vbottom,vtop,
+     &     nc,cf,ca,tr,
+     &     massc,massb,masst,mc,mb,mt,
+     &     mu,muc,mub,mut,
+     &     dln2,pi,zeta2,zeta3,zeta4,zeta5,a4,b4,
+     &     sqmin,
+     &     thrc,thrb,thrt,thrclow,thrblow,thrtlow,
+     &     xgtbuf,xltbuf,
+     &     iord,infini,inffin,iunit,
+     &     kversion,
+     &     lverbose,
+     &     lcharm,lbottom,ltop,
+     &     losmass,lqed,lmassless,la3m2,la3m4,la3sing,la4m2,lpsup,
+     &     lmsbar,lrvctexp

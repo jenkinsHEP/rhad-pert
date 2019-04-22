@@ -1,0 +1,12 @@
+
+rhad -- Version 1.01
+====================
+
+runal.f: pause command removed
+
+r34.f updated: exact alpha_s^4 corrections included for the
+               the (m^2/s)^0 and (m^2/s)^1 terms. 
+
+The (m^2/s)^1 corrections where the outer quark is massless are neglected
+at order alpha_s^4. The corresponding corrections at order alpha_s^3
+are already included in version 1.00.
