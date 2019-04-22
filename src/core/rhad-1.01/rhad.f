@@ -767,18 +767,18 @@ c..   print parameters:
       if (lverbose) call printpar(scms)
 
 c..   check if energy region makes sense
-      if (((scms.gt.thrclow**2 * xgtbuf).and.
-     &     (.not.lcharm)).or.
-     &     ((scms.gt.thrblow**2 * xgtbuf).and.
-     &     (.not.lbottom)).or.
-     &     ((scms.gt.thrtlow**2 * xgtbuf).and.
-     &     (.not.ltop))) then
-      write(6,2003) dsqrt(scms)
- 2003 format(
-     &     'WARNING: sqrt(s)=',1f8.3,' GeV not in region where ',/
-     &     '         perturbation theory can be applied.'
-     &     )
-      endif
+c..      if (((scms.gt.thrclow**2 * xgtbuf).and.
+c..     &     (.not.lcharm)).or.
+c..     &     ((scms.gt.thrblow**2 * xgtbuf).and.
+c..     &     (.not.lbottom)).or.
+c..     &     ((scms.gt.thrtlow**2 * xgtbuf).and.
+c..     &     (.not.ltop))) then
+c..      write(6,2003) dsqrt(scms)
+c..  2003 format(
+c..     &     'WARNING: sqrt(s)=',1f8.3,' GeV not in region where ',/
+c..     &     '         perturbation theory can be applied.'
+c..     &     )
+c..      endif
 
       end
 
