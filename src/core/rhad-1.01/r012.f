@@ -1,6 +1,6 @@
 c..
 c..   r012.f
-c..   
+c..
 c..   This file is part of `rhad'.
 c..
 c..   routines for Born, 1-loop, 2-loop contributions
@@ -14,13 +14,13 @@ c..
 c..   massless one-loop QED
 c..
 c..   scms = center of mass energy squared
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       r01qed = 3.d0/4.d0
 
@@ -37,13 +37,13 @@ c..
 c..   massless one-loop
 c..
 c..   scms = center of mass energy squared
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       r01 = cf*3.d0/4.d0
 
@@ -61,13 +61,13 @@ c..   massless two-loop
 c..   CF**2 terms
 c..
 c..   scms = center of mass energy squared
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       r0cf = cf**2 * ( -3.d0/32.d0 )
 
@@ -90,8 +90,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       dlsmu = dlog(scms/mu/mu)
 
@@ -116,8 +116,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       dlsmu = dlog(scms/mu/mu)
 
@@ -142,8 +142,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       dlsmu = dlog(scms/mu/mu)
 
@@ -164,13 +164,13 @@ c..   vector case
 c..
 c..   scms = center of mass energy squared
 c..   mq   = quark mass
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if (lmassless) then
          velo = 1.d0
@@ -195,7 +195,7 @@ c..   vector case
 c..
 c..   scms = center of mass energy squared
 c..   mq   = quark mass
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
@@ -203,8 +203,8 @@ c..
       complex*16 spence,csp1,csp2
       real*8 arg
       external spence
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       velo = dsqrt( 1.d0 - 4.d0*mq**2/scms )
 
@@ -243,20 +243,20 @@ c..
 c..   scms = center of mass energy squared
 c..   mq   = quark mass
 c..
-c..   Note, 'rtmp' contains already the colour factor cf 
+c..   Note, 'rtmp' contains already the colour factor cf
 c..   but not the overall factor nc
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       velo = dsqrt( 1.d0 - 4.d0*mq**2/scms )
 
       if ((.not.lmassless).and.(velo.ne.1.d0)) then
-         rtmp = (-0.5*(-1. + velo**2)**2*(4. + 
+         rtmp = (-0.5*(-1. + velo**2)**2*(4. +
      -        3.*dlog(mu**2/mq**2)))/velo
       else
          rtmp = 0.d0
@@ -280,13 +280,13 @@ c..   CF**2 terms
 c..
 c..   scms = center of mass energy squared
 c..   mq   = quark mass
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       velo = dsqrt( 1.d0 - 4.d0*mq**2/scms )
 
@@ -352,8 +352,8 @@ c..
       complex*16 trilog,ctr1,ctr2,ctr3,ctr4,ctr5
       real*8 arg,argt1,argt2,argt3,argt4,argt5
       external spence
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       velo = dsqrt( 1.d0 - 4.d0*mq**2/scms )
 
@@ -501,7 +501,7 @@ c..
      &        .8611111111111112d0*velo**4)* dlog(1.d0 - (1.d0*(1.d0 - 1
      &        .d0*velo))/(1.d0 + velo)) + (1.2916666666666667d0 + 0
      &        .8611111111111112d0*velo**2 - 0.4305555555555556d0*velo**4
-     &        )* dlog(1.d0 + (1.d0 - 1.d0*velo)/(1.d0 + velo)) 
+     &        )* dlog(1.d0 + (1.d0 - 1.d0*velo)/(1.d0 + velo))
      &        + dlog(1.d0 - 1.d0*velo**2)* (-1.890625d0 + 4.125d0*velo -
      &        1.2604166666666667d0*velo**2 - 1.375d0*velo**3 + 0
      &        .4010416666666667d0*velo**4 + (2.75d0 + 1
@@ -527,7 +527,7 @@ c..
          rvca = r0ca(scms)
          return
       endif
-         
+
       rvca = cf*ca * rtmp
 
       return
@@ -555,8 +555,8 @@ c..
       complex*16 trilog,ctr1,ctr2,ctr3,ctr4,ctr5
       real*8 arg,argt1,argt2,argt3,argt4,argt5
       external spence
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       velo = dsqrt( 1.d0 - 4.d0*mq**2/scms )
 
@@ -649,8 +649,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       velo = dsqrt( 1.d0 - 4.d0*mq**2/scms )
 
@@ -664,7 +664,7 @@ c..
                rtmp = rvctrv(scms,mq)
      &              + 1.d0/4.d0 * dlog(mq**2/mu**2) * rv1(scms,mq)
             else
-c..   use high-energy expansion if mq^2/s is too small 
+c..   use high-energy expansion if mq^2/s is too small
 c..   (rvctreal becomes unstable):
                rtmp = rvctexp(scms,mq)
             endif
@@ -693,7 +693,7 @@ c..   mq   = quark mass
 c..
 c..   Note, 'rtmp1' and 'rtmp2' contain already the colour factors
 c..   but not the overall factor nc
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
@@ -701,8 +701,8 @@ c..
       complex*16 spence,csp1,csp2
       real*8 arg
       external spence
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       velo = dsqrt( 1.d0 - 4.d0*mq**2/scms )
 
@@ -715,142 +715,142 @@ c..
 
 c..   expression induced from Born term
          rtmp1 =
-     -    (0.0625*(-21.333333333333332 
-     -        - 230.25*velo**2 + 524.5*velo**4 - 
-     -       272.9166666666667*velo**6 - 48.*velo**2*zeta2 - 
-     -       16.*dlog(2.d0)*velo**2*zeta2 + 96.*velo**4*zeta2 + 
-     -       32.*dlog(2.d0)*velo**4*zeta2 - 48.*velo**6*zeta2 - 
-     -       16.*dlog(2.d0)*velo**6*zeta2 + 4.*velo**2*zeta3 
-     -        - 8.*velo**4*zeta3 + 
-     -       4.*velo**6*zeta3 - 32.*dlog(mu**2/mq**2) - 
-     -       164.33333333333334*velo**2*dlog(mu**2/mq**2) + 
-     -       424.6666666666667*velo**4*dlog(mu**2/mq**2) - 
-     -       228.33333333333334*velo**6*dlog(mu**2/mq**2) - 
-     -       12.*dlog(mu**2/mq**2)**2 
-     -        - 43.*velo**2*dlog(mu**2/mq**2)**2 + 
-     -       122.*velo**4*dlog(mu**2/mq**2)**2 - 
-     -       67.*velo**6*dlog(mu**2/mq**2)**2 + 
-     -       (inffin-1)*(11.833333333333334*velo**2 
-     -        - 23.666666666666668*velo**4 + 
-     -          11.833333333333334*velo**6 + 8.*velo**2*zeta2 - 
-     -          16.*velo**4*zeta2 + 8.*velo**6*zeta2 + 
-     -          8.666666666666666*velo**2*dlog(mu**2/mq**2) - 
-     -          17.333333333333332*velo**4*dlog(mu**2/mq**2) + 
-     -          8.666666666666666*velo**6*dlog(mu**2/mq**2) + 
-     -          2.*velo**2*dlog(mu**2/mq**2)**2 - 
-     -          4.*velo**4*dlog(mu**2/mq**2)**2 + 
+     -    (0.0625*(-21.333333333333332
+     -        - 230.25*velo**2 + 524.5*velo**4 -
+     -       272.9166666666667*velo**6 - 48.*velo**2*zeta2 -
+     -       16.*dlog(2.d0)*velo**2*zeta2 + 96.*velo**4*zeta2 +
+     -       32.*dlog(2.d0)*velo**4*zeta2 - 48.*velo**6*zeta2 -
+     -       16.*dlog(2.d0)*velo**6*zeta2 + 4.*velo**2*zeta3
+     -        - 8.*velo**4*zeta3 +
+     -       4.*velo**6*zeta3 - 32.*dlog(mu**2/mq**2) -
+     -       164.33333333333334*velo**2*dlog(mu**2/mq**2) +
+     -       424.6666666666667*velo**4*dlog(mu**2/mq**2) -
+     -       228.33333333333334*velo**6*dlog(mu**2/mq**2) -
+     -       12.*dlog(mu**2/mq**2)**2
+     -        - 43.*velo**2*dlog(mu**2/mq**2)**2 +
+     -       122.*velo**4*dlog(mu**2/mq**2)**2 -
+     -       67.*velo**6*dlog(mu**2/mq**2)**2 +
+     -       (inffin-1)*(11.833333333333334*velo**2
+     -        - 23.666666666666668*velo**4 +
+     -          11.833333333333334*velo**6 + 8.*velo**2*zeta2 -
+     -          16.*velo**4*zeta2 + 8.*velo**6*zeta2 +
+     -          8.666666666666666*velo**2*dlog(mu**2/mq**2) -
+     -          17.333333333333332*velo**4*dlog(mu**2/mq**2) +
+     -          8.666666666666666*velo**6*dlog(mu**2/mq**2) +
+     -          2.*velo**2*dlog(mu**2/mq**2)**2 -
+     -          4.*velo**4*dlog(mu**2/mq**2)**2 +
      -          2.*velo**6*dlog(mu**2/mq**2)**2)))/velo**3
 
 c..   expression induced from O(as) corrections
          rtmp2 =
-     -        (6.222222222222222*velo**3 + 6.222222222222222*velo**4 - 
-     -     18.666666666666668*velo**5 - 18.666666666666668*velo**6 + 
-     -     18.666666666666668*velo**7 + 18.666666666666668*velo**8 - 
-     -     6.222222222222222*velo**9 - 6.222222222222222*velo**10 + 
-     -     sp1*(-7.111111111111111*velo**2 - 7.111111111111111*velo**3 + 
-     -        28.444444444444443*velo**4 + 28.444444444444443*velo**5 - 
-     -        42.666666666666664*velo**6 - 42.666666666666664*velo**7 + 
-     -        28.444444444444443*velo**8 + 28.444444444444443*velo**9 - 
-     -        7.111111111111111*velo**10 - 7.111111111111111*velo**11 + 
-     -        (-5.333333333333333*velo**2 - 5.333333333333333*velo**3 + 
-     -           21.333333333333332*velo**4 
-     -        + 21.333333333333332*velo**5 - 
-     -           32.*velo**6 - 32.*velo**7 
-     -        + 21.333333333333332*velo**8 + 
-     -           21.333333333333332*velo**9 
-     -        - 5.333333333333333*velo**10 - 
-     -           5.333333333333333*velo**11)*dlog(mu**2/mq**2)) + 
-     -     sp2*(-3.5555555555555554*velo**2 
-     -        - 3.5555555555555554*velo**3 + 
-     -        14.222222222222221*velo**4 + 14.222222222222221*velo**5 - 
-     -        21.333333333333332*velo**6 - 21.333333333333332*velo**7 + 
-     -        14.222222222222221*velo**8 + 14.222222222222221*velo**9 - 
-     -        3.5555555555555554*velo**10 
-     -        - 3.5555555555555554*velo**11 + 
-     -        (-2.6666666666666665*velo**2 
-     -        - 2.6666666666666665*velo**3 + 
-     -           10.666666666666666*velo**4 
-     -        + 10.666666666666666*velo**5 - 
-     -           16.*velo**6 - 16.*velo**7 
-     -        + 10.666666666666666*velo**8 + 
-     -           10.666666666666666*velo**9 
-     -        - 2.6666666666666665*velo**10 - 
-     -           2.6666666666666665*velo**11)*dlog(mu**2/mq**2)) + 
-     -     (-10.666666666666666*velo - 10.666666666666666*velo**2 + 
-     -        14.222222222222221*velo**3 + 14.222222222222221*velo**4 + 
-     -        7.111111111111111*velo**5 + 7.111111111111111*velo**6 - 
-     -        14.222222222222221*velo**7 - 14.222222222222221*velo**8 + 
+     -        (6.222222222222222*velo**3 + 6.222222222222222*velo**4 -
+     -     18.666666666666668*velo**5 - 18.666666666666668*velo**6 +
+     -     18.666666666666668*velo**7 + 18.666666666666668*velo**8 -
+     -     6.222222222222222*velo**9 - 6.222222222222222*velo**10 +
+     -     sp1*(-7.111111111111111*velo**2 - 7.111111111111111*velo**3 +
+     -        28.444444444444443*velo**4 + 28.444444444444443*velo**5 -
+     -        42.666666666666664*velo**6 - 42.666666666666664*velo**7 +
+     -        28.444444444444443*velo**8 + 28.444444444444443*velo**9 -
+     -        7.111111111111111*velo**10 - 7.111111111111111*velo**11 +
+     -        (-5.333333333333333*velo**2 - 5.333333333333333*velo**3 +
+     -           21.333333333333332*velo**4
+     -        + 21.333333333333332*velo**5 -
+     -           32.*velo**6 - 32.*velo**7
+     -        + 21.333333333333332*velo**8 +
+     -           21.333333333333332*velo**9
+     -        - 5.333333333333333*velo**10 -
+     -           5.333333333333333*velo**11)*dlog(mu**2/mq**2)) +
+     -     sp2*(-3.5555555555555554*velo**2
+     -        - 3.5555555555555554*velo**3 +
+     -        14.222222222222221*velo**4 + 14.222222222222221*velo**5 -
+     -        21.333333333333332*velo**6 - 21.333333333333332*velo**7 +
+     -        14.222222222222221*velo**8 + 14.222222222222221*velo**9 -
+     -        3.5555555555555554*velo**10
+     -        - 3.5555555555555554*velo**11 +
+     -        (-2.6666666666666665*velo**2
+     -        - 2.6666666666666665*velo**3 +
+     -           10.666666666666666*velo**4
+     -        + 10.666666666666666*velo**5 -
+     -           16.*velo**6 - 16.*velo**7
+     -        + 10.666666666666666*velo**8 +
+     -           10.666666666666666*velo**9
+     -        - 2.6666666666666665*velo**10 -
+     -           2.6666666666666665*velo**11)*dlog(mu**2/mq**2)) +
+     -     (-10.666666666666666*velo - 10.666666666666666*velo**2 +
+     -        14.222222222222221*velo**3 + 14.222222222222221*velo**4 +
+     -        7.111111111111111*velo**5 + 7.111111111111111*velo**6 -
+     -        14.222222222222221*velo**7 - 14.222222222222221*velo**8 +
      -        3.5555555555555554*velo**9 + 3.5555555555555554*velo**10)*
-     -      dlog(1. - (1.*(-1. + velo)**2)/(1. + velo)**2) + 
-     -     (10.666666666666666*velo + 10.666666666666666*velo**2 - 
-     -        42.666666666666664*velo**3 - 42.666666666666664*velo**4 + 
-     -        64.*velo**5 + 64.*velo**6 - 42.666666666666664*velo**7 - 
-     -        42.666666666666664*velo**8 + 10.666666666666666*velo**9 + 
+     -      dlog(1. - (1.*(-1. + velo)**2)/(1. + velo)**2) +
+     -     (10.666666666666666*velo + 10.666666666666666*velo**2 -
+     -        42.666666666666664*velo**3 - 42.666666666666664*velo**4 +
+     -        64.*velo**5 + 64.*velo**6 - 42.666666666666664*velo**7 -
+     -        42.666666666666664*velo**8 + 10.666666666666666*velo**9 +
      -        10.666666666666666*velo**10)*
-     -      dlog(1. - (1.*(1. - 1.*velo))/(1. + velo)) + 
-     -     (10.666666666666666*velo + 10.666666666666666*velo**2 - 
-     -        28.444444444444443*velo**3 - 28.444444444444443*velo**4 + 
-     -        28.444444444444443*velo**5 + 28.444444444444443*velo**6 - 
-     -        14.222222222222221*velo**7 - 14.222222222222221*velo**8 + 
+     -      dlog(1. - (1.*(1. - 1.*velo))/(1. + velo)) +
+     -     (10.666666666666666*velo + 10.666666666666666*velo**2 -
+     -        28.444444444444443*velo**3 - 28.444444444444443*velo**4 +
+     -        28.444444444444443*velo**5 + 28.444444444444443*velo**6 -
+     -        14.222222222222221*velo**7 - 14.222222222222221*velo**8 +
      -        3.5555555555555554*velo**9 + 3.5555555555555554*velo**10)*
-     -      dlog(1. + (1. - 1.*velo)/(1. + velo)) + 
+     -      dlog(1. + (1. - 1.*velo)/(1. + velo)) +
      -     dlog((1. - 1.*velo)/(1. + velo))*
-     -      (-5.333333333333333 - 5.333333333333333*velo + 
-     -        9.333333333333334*velo**2 + 30.666666666666668*velo**3 + 
-     -        10.666666666666666*velo**4 - 64.*velo**5 - 
-     -        34.666666666666664*velo**6 + 61.333333333333336*velo**7 + 
-     -        26.666666666666668*velo**8 - 26.666666666666668*velo**9 - 
-     -        6.666666666666667*velo**10 + 4.*velo**11 + 
-     -        (-7.111111111111111*velo**2 - 7.111111111111111*velo**3 + 
-     -           28.444444444444443*velo**4 
-     -        + 28.444444444444443*velo**5 - 
-     -           42.666666666666664*velo**6 
-     -        - 42.666666666666664*velo**7 + 
-     -           28.444444444444443*velo**8 
-     -        + 28.444444444444443*velo**9 - 
+     -      (-5.333333333333333 - 5.333333333333333*velo +
+     -        9.333333333333334*velo**2 + 30.666666666666668*velo**3 +
+     -        10.666666666666666*velo**4 - 64.*velo**5 -
+     -        34.666666666666664*velo**6 + 61.333333333333336*velo**7 +
+     -        26.666666666666668*velo**8 - 26.666666666666668*velo**9 -
+     -        6.666666666666667*velo**10 + 4.*velo**11 +
+     -        (-7.111111111111111*velo**2 - 7.111111111111111*velo**3 +
+     -           28.444444444444443*velo**4
+     -        + 28.444444444444443*velo**5 -
+     -           42.666666666666664*velo**6
+     -        - 42.666666666666664*velo**7 +
+     -           28.444444444444443*velo**8
+     -        + 28.444444444444443*velo**9 -
      -         7.111111111111111*velo**10 - 7.111111111111111*velo**11)*
-     -         dlog(1. - (1.*(1. - 1.*velo))/(1. + velo)) + 
-     -       (-3.5555555555555554*velo**2 - 3.5555555555555554*velo**3 + 
-     -         14.222222222222221*velo**4 + 14.222222222222221*velo**5 - 
-     -         21.333333333333332*velo**6 - 21.333333333333332*velo**7 + 
-     -         14.222222222222221*velo**8 + 14.222222222222221*velo**9 - 
+     -         dlog(1. - (1.*(1. - 1.*velo))/(1. + velo)) +
+     -       (-3.5555555555555554*velo**2 - 3.5555555555555554*velo**3 +
+     -         14.222222222222221*velo**4 + 14.222222222222221*velo**5 -
+     -         21.333333333333332*velo**6 - 21.333333333333332*velo**7 +
+     -         14.222222222222221*velo**8 + 14.222222222222221*velo**9 -
      -       3.5555555555555554*velo**10 - 3.5555555555555554*velo**11)*
-     -         dlog(1. + (1. - 1.*velo)/(1. + velo))) + 
-     -     dlog(mu**2/mq**2)*(4.666666666666667*velo**3 + 
-     -        4.666666666666667*velo**4 - 14.*velo**5 - 14.*velo**6 + 
-     -        14.*velo**7 + 14.*velo**8 - 4.666666666666667*velo**9 - 
-     -        4.666666666666667*velo**10 + 
-     -        (-8.*velo - 8.*velo**2 + 10.666666666666666*velo**3 + 
-     -          10.666666666666666*velo**4 + 5.333333333333333*velo**5 + 
-     -          5.333333333333333*velo**6 - 10.666666666666666*velo**7 - 
-     -         10.666666666666666*velo**8 + 2.6666666666666665*velo**9 + 
+     -         dlog(1. + (1. - 1.*velo)/(1. + velo))) +
+     -     dlog(mu**2/mq**2)*(4.666666666666667*velo**3 +
+     -        4.666666666666667*velo**4 - 14.*velo**5 - 14.*velo**6 +
+     -        14.*velo**7 + 14.*velo**8 - 4.666666666666667*velo**9 -
+     -        4.666666666666667*velo**10 +
+     -        (-8.*velo - 8.*velo**2 + 10.666666666666666*velo**3 +
+     -          10.666666666666666*velo**4 + 5.333333333333333*velo**5 +
+     -          5.333333333333333*velo**6 - 10.666666666666666*velo**7 -
+     -         10.666666666666666*velo**8 + 2.6666666666666665*velo**9 +
      -           2.6666666666666665*velo**10)*
-     -         dlog(1. - (1.*(-1. + velo)**2)/(1. + velo)**2) + 
-     -        (8.*velo + 8.*velo**2 - 32.*velo**3 - 32.*velo**4 + 
-     -           48.*velo**5 + 48.*velo**6 - 32.*velo**7 - 32.*velo**8 + 
+     -         dlog(1. - (1.*(-1. + velo)**2)/(1. + velo)**2) +
+     -        (8.*velo + 8.*velo**2 - 32.*velo**3 - 32.*velo**4 +
+     -           48.*velo**5 + 48.*velo**6 - 32.*velo**7 - 32.*velo**8 +
      -           8.*velo**9 + 8.*velo**10)*
-     -         dlog(1. - (1.*(1. - 1.*velo))/(1. + velo)) + 
-     -        (8.*velo + 8.*velo**2 - 21.333333333333332*velo**3 - 
-     -         21.333333333333332*velo**4 + 21.333333333333332*velo**5 + 
-     -         21.333333333333332*velo**6 - 10.666666666666666*velo**7 - 
-     -         10.666666666666666*velo**8 + 2.6666666666666665*velo**9 + 
+     -         dlog(1. - (1.*(1. - 1.*velo))/(1. + velo)) +
+     -        (8.*velo + 8.*velo**2 - 21.333333333333332*velo**3 -
+     -         21.333333333333332*velo**4 + 21.333333333333332*velo**5 +
+     -         21.333333333333332*velo**6 - 10.666666666666666*velo**7 -
+     -         10.666666666666666*velo**8 + 2.6666666666666665*velo**9 +
      -           2.6666666666666665*velo**10)*
-     -         dlog(1. + (1. - 1.*velo)/(1. + velo)) + 
+     -         dlog(1. + (1. - 1.*velo)/(1. + velo)) +
      -        dlog((1. - 1.*velo)/(1. + velo))*
-     -         (-4. - 4.*velo + 7.*velo**2 + 23.*velo**3 + 8.*velo**4 - 
-     -           48.*velo**5 - 26.*velo**6 + 46.*velo**7 + 20.*velo**8 - 
-     -           20.*velo**9 - 5.*velo**10 + 3.*velo**11 + 
-     -         (-5.333333333333333*velo**2 - 5.333333333333333*velo**3 + 
-     -         21.333333333333332*velo**4 + 21.333333333333332*velo**5 - 
-     -         32.*velo**6 - 32.*velo**7 + 21.333333333333332*velo**8 + 
-     -         21.333333333333332*velo**9 - 5.333333333333333*velo**10 - 
+     -         (-4. - 4.*velo + 7.*velo**2 + 23.*velo**3 + 8.*velo**4 -
+     -           48.*velo**5 - 26.*velo**6 + 46.*velo**7 + 20.*velo**8 -
+     -           20.*velo**9 - 5.*velo**10 + 3.*velo**11 +
+     -         (-5.333333333333333*velo**2 - 5.333333333333333*velo**3 +
+     -         21.333333333333332*velo**4 + 21.333333333333332*velo**5 -
+     -         32.*velo**6 - 32.*velo**7 + 21.333333333333332*velo**8 +
+     -         21.333333333333332*velo**9 - 5.333333333333333*velo**10 -
      -         5.333333333333333*velo**11)*
-     -            dlog(1. - (1.*(1. - 1.*velo))/(1. + velo)) + 
-     -         (-2.6666666666666665*velo**2 
-     -        - 2.6666666666666665*velo**3 + 
-     -         10.666666666666666*velo**4 + 10.666666666666666*velo**5 - 
-     -         16.*velo**6 - 16.*velo**7 + 10.666666666666666*velo**8 + 
-     -              10.666666666666666*velo**9 - 
+     -            dlog(1. - (1.*(1. - 1.*velo))/(1. + velo)) +
+     -         (-2.6666666666666665*velo**2
+     -        - 2.6666666666666665*velo**3 +
+     -         10.666666666666666*velo**4 + 10.666666666666666*velo**5 -
+     -         16.*velo**6 - 16.*velo**7 + 10.666666666666666*velo**8 +
+     -              10.666666666666666*velo**9 -
      -        2.6666666666666665*velo**10 - 2.6666666666666665*velo**11)
      -             *dlog(1. + (1. - 1.*velo)/(1. + velo)))))/
      -   ((-1. + velo)**2*velo**2*(1. + velo)**3)
@@ -884,9 +884,9 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
-      if (min.eq.0.d0) then    
+      if (min.eq.0.d0) then
          r0db = r0nl(scms)
       else
          if (label) then
@@ -927,7 +927,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if (lmassless) then
          rvdb = r0db(scms,min,label)
@@ -943,9 +943,9 @@ c..
 c..   no mass corrections due to inner loop are included:
             rvdb = rvnl(scms,mout)
          endif
-c..         
+c..
       else                          !  (II) min > mout
-         if (label) then 
+         if (label) then
 c..   (IIa) above threshold
             rvdb = rv2cbl(scms,mout,min)
          else                       !  (IIb) below threshold
@@ -956,7 +956,7 @@ c..   (IIa) above threshold
             endif
          endif
       endif
-      
+
       return
       end
 
@@ -989,8 +989,8 @@ c..
       complex*16 trilog,ctr1,ctr2,ctr3,ctr4,ctr5,ctr6,ctr7
       real*8 arg1,arg2,arg3,arg4
       external spence,trilog
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       if (mout.ge.min) then
          write(6,*) '<function rv2cbl>: invalid input'
@@ -1149,8 +1149,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       if (.not.lpsup) then
          rv2cbh = 0.d0
@@ -1202,8 +1202,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
 c..   Note: it is assumed that 'min' is decoupled from \alpha_s
 
@@ -1211,7 +1211,7 @@ c..   analytical expression for mout = 0 expanded for scms/min^2 -> 0
 c..   gives good approximation almost up to scms = 4*min^2
 c..
 
-c..   Expression from T.Seidensticker, private communication: leading term in 
+c..   Expression from T.Seidensticker, private communication: leading term in
 c..   1/min^2 with exact dependence on mout
       rtmp = ((0.35555555555555557d0*mout**6)/(min**2*scms**2) + (0
      &     .26666666666666666d0*mout**4)/(min**2*scms) - (0
@@ -1255,29 +1255,29 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
 c..   Note: it is assumed that 'min' is decoupled from \alpha_s
 
-c..   Expression from T.Seidensticker, diploma thesis (after bug fixing): 
+c..   Expression from T.Seidensticker, diploma thesis (after bug fixing):
 c..   leading term in 1/min^2 with exact dependence on mout
       rtmp = (3.04*mout**6)/(min**2*
-     -     dsqrt(1. - (4.*mout**2)/scms)*scms**2) - 
+     -     dsqrt(1. - (4.*mout**2)/scms)*scms**2) -
      -   (3.2*mout**6*dlog(1/min))/
-     -    (min**2*dsqrt(1. - (4.*mout**2)/scms)*scms**2) + 
+     -    (min**2*dsqrt(1. - (4.*mout**2)/scms)*scms**2) +
      -   (1.6*mout**6*dlog(mout**(-2)))/
-     -    (min**2*dsqrt(1. - (4.*mout**2)/scms)*scms**2) + 
-     -   ((0.35555555555555557*mout**6)/(min**2*scms**2) + 
-     -      (0.26666666666666666*mout**4)/(min**2*scms) - 
+     -    (min**2*dsqrt(1. - (4.*mout**2)/scms)*scms**2) +
+     -   ((0.35555555555555557*mout**6)/(min**2*scms**2) +
+     -      (0.26666666666666666*mout**4)/(min**2*scms) -
      -      (0.022222222222222223*scms)/min**2)*
      -    dlog((1. + dsqrt(1. - (4.*mout**2)/scms))/
-     -      (1. - 1.*dsqrt(1. - (4.*mout**2)/scms))) + 
-     -   ((0.3511111111111111*mout**2)/min**2 + 
-     -      (0.17777777777777778*mout**4)/(min**2*scms) + 
+     -      (1. - 1.*dsqrt(1. - (4.*mout**2)/scms))) +
+     -   ((0.3511111111111111*mout**2)/min**2 +
+     -      (0.17777777777777778*mout**4)/(min**2*scms) +
      -      (0.09777777777777778*scms)/min**2)*
      -     dsqrt(1. - (4.*mout**2)/scms)
-     -    + ((0.044444444444444446*mout**2)/min**2 + 
+     -    + ((0.044444444444444446*mout**2)/min**2 +
      -      (0.022222222222222223*scms)/min**2)*dlog(min**2/mout**2)*
      -    dsqrt(1. - (4.*mout**2)/scms)
 
@@ -1296,7 +1296,7 @@ c..
 c..   two-loop
 c..   vector case
 c..   outer loop massless
-c..   double bubble power suppressed terms, i.e.   
+c..   double bubble power suppressed terms, i.e.
 c..
 c..   ****     scms < 4*thrq^2     ****
 c..
@@ -1304,7 +1304,7 @@ c..   analytical expression
 c..
 c..   NOTE: WE FIND HUGE CANCELLATIONS AMONG INDIVIDUAL TERMS
 c..   IN RTMP! SEE THE VALUES FOR RTMP1, RTMP2, ...
-c..   
+c..
 c..   scms: cms energy squared
 c..   min : mass of quark coupling to gluons only
 c..
@@ -1314,11 +1314,11 @@ c..
       implicit  logical(l)
       complex*16 spence,csp7
       complex*16 trilog,ctr7
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
 c..   analytical expression for mout = 0
-      arg7 = 
+      arg7 =
      &     ( -dsqrt(1.d0/(1.d0-(1.d0-4.d0*min**2/scms)))+
      &     dsqrt(1.d0+1.d0/(1.d0-(1.d0-4.d0*min**2/scms)))
      &     )**2
@@ -1361,7 +1361,7 @@ C-{{{ function rvctrv:
 
       function rvctrv(scms,mq)
 c..
-c..   Adds real and virtual contributions of 2-loop 
+c..   Adds real and virtual contributions of 2-loop
 c..   double bubble with equal masses.
 c..
 c..   scms: cms energy squared
@@ -1371,8 +1371,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       rvctrv = rvctvirt(scms,mq) + rvctreal(scms,mq)
 
@@ -1385,10 +1385,10 @@ C-{{{ function rvctvirt:
       function rvctvirt(scms,mq)
 c..
 c..   Virtual contributions to double bubble with equal masses.
-c..   
+c..
 c..   scms:  cms energy squared
 c..   mq:    quark mass
-c..   
+c..
       implicit real*8 (a-z)
 
       if (scms.le.4*mq*mq) then
@@ -1451,10 +1451,10 @@ c..   gcc version 2.95  gives 'false' for the following, if eps=0
       ncall2=5000     !  calls for vegas run 2
       nprn=0          !  =1 -- verbose mode
       igraph = 0
-      
+
       ncall = ncall1
       itmx = itmx1
-      
+
       call vegas(fyzint,acc,ndim,ncall,itmx,nprn,igraph)
 
       ncall = ncall2
@@ -1472,7 +1472,7 @@ C-{{{ function fyzint:
       real*8 function fyzint(xx,wgt)
 c..
 c..   Integrand for real contributions to massive double bubble.
-c..   
+c..
       implicit real*8 (a-z)
       real*8 xx(10)
       external fyz
@@ -1494,7 +1494,7 @@ c..   meas2: Jacobian from change of variable.
          meas2 = (1 - 2*zz)*( (1-dsqrt(y))**2 - zz2 )
          fyzint = 1/3.d0 * meas1 * meas2 * fyz(y,z)
       endif
-         
+
       end
 
 C-}}}
@@ -1514,7 +1514,7 @@ c..
      &     (1-y+z)*dlog(( 1-y+z-wurz*dslam )/(1-y+z + wurz*dslam ))
      &     - wurz*dslam*( 1 + (zz2**2 + 2*zz2 + 4*(1+zz2/2.d0)*z)/
      &     ( (1-y+z)**2 - wurz**2*dslam**2 ) )
-      
+
       end
 
 C-}}}
@@ -1531,14 +1531,14 @@ c..   This is faster than rvdbrv, where the real radiation
 c..   is integrated numerically.
 c..
 c..   scms : cms energy squared
-c..   mq   : on-shell quark mass 
+c..   mq   : on-shell quark mass
 c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       m2s = mq*mq/scms
 
@@ -1571,7 +1571,3 @@ c..
 C-}}}
 
 C-}}}
-
-
-
-

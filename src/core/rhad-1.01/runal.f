@@ -2,7 +2,7 @@ c..
 c..   runal.f
 c..
 c..   This file is part of `rhad'.
-c..   
+c..
 c..   routines for running and decoupling of \alpha_s
 c..
 C-{{{ function mms2mos:
@@ -17,7 +17,7 @@ c..   mms:    MS-bar m(m)
 c..   inf:    number of active quark flavours
 c..   inloop: loop-order in \alpha_s
 c..   mos:    on-shell mass (output)
-c..   
+c..
 c..   Warning: there might be problems if not as(Mz) is used as input
 c..
       implicit	real*8(a-h,m-z)
@@ -25,7 +25,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if(inloop.eq.4)then
          write(6,*) '<function mms2mos>: ',inloop,
@@ -34,7 +34,7 @@ c..
          write(6,*) '<function mms2mos>: ',inloop,
      &        ' loop relation not implemented.'
          write(6,*) 'Stopped.'
-         stop         
+         stop
       endif
 
 c..   Compute \alphas^(inf)(mms)
@@ -76,22 +76,22 @@ c..   The quark masses mb and mt are decoupled for mu=mb and mu=mt, resp.
       call runalpha(alsact/pi,mu0act,mms,infact,iord,0,apiout)
 
       apilo = apiout
-      
+
       mos = mms
 
       if(inloop.ge.1)then
          mos = mos + mms*(1.3333333333333333333d0*apilo)
       endif
       if(inloop.ge.2)then
-         mos = mos +  mms*(apilo**2*(13.443396256931755664d0 
+         mos = mos +  mms*(apilo**2*(13.443396256931755664d0
      &        - 1.0413669111716310344d0*(-1. + inf)))
       endif
       if(inloop.ge.3)then
          mos = mos +  mms*(apilo**3*(190.59495524378951376d0
      &        + 0.652690749081543758d0*(-1. + inf)**2
      &        - 26.655131692105261133d0*(-1. + inf)))
-      endif      
-      
+      endif
+
       return
       end
 
@@ -113,19 +113,19 @@ c..   inloop: loop-order for decoupling
 c..   idir:   direction: -1: \alphas^(nl+1) -> \alphas^(nl)
 c..                      +1: \alphas^(nl) -> \alphas^(nl+1)
 c..   alsout: \alpha_s (output)
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if(inloop.ge.4)then
             write(6,*) '<function decalphams>: ',inloop,
      &           ' decoupling not implemented.'
             write(6,*) 'Stopped.'
-            stop         
+            stop
       endif
 
       alsout = 1.d0
@@ -143,14 +143,14 @@ c..   \alphas^(nl+1) -> \alphas^(nl)
      &           +1.d0/36.d0*(dlog(muth*muth/massth/massth))**2)
          endif
          if(inloop.ge.3)then
-            xlmm = dlog(muth*muth/massth/massth) 
+            xlmm = dlog(muth*muth/massth/massth)
             alsout = alsout+als/pi*als/pi*als/pi*
-     &           (564731d0/124416d0 
-     &           - (955d0*xlmm)/576d0 
-     &           + (53d0*xlmm**2)/576d0 
-     &           - xlmm**3/216d0 
-     &           + (-2633d0/31104d0 
-     &           +   (67d0*xlmm)/576d0 - xlmm**2/36d0)*inl 
+     &           (564731d0/124416d0
+     &           - (955d0*xlmm)/576d0
+     &           + (53d0*xlmm**2)/576d0
+     &           - xlmm**3/216d0
+     &           + (-2633d0/31104d0
+     &           +   (67d0*xlmm)/576d0 - xlmm**2/36d0)*inl
      &           - (82043d0*zeta3)/27648d0)
          endif
       endif
@@ -168,17 +168,17 @@ c..   \alphas^(nl) -> \alphas^(nl+1)
      &           +1.d0/36.d0*(dlog(muth*muth/massth/massth))**2)
          endif
          if(inloop.ge.3)then
-            xlmm = dlog(muth*muth/massth/massth) 
+            xlmm = dlog(muth*muth/massth/massth)
             alsout = alsout+als/pi*als/pi*als/pi*
-     &           (-564731d0/124416d0 
-     &           + (2645d0*xlmm)/1728d0 + (167d0*xlmm**2)/576d0 
-     &           + xlmm**3/216d0 
-     &           + (2633d0/31104d0 - (67d0*xlmm)/576d0 
-     &           + xlmm**2/36d0)*inl 
+     &           (-564731d0/124416d0
+     &           + (2645d0*xlmm)/1728d0 + (167d0*xlmm**2)/576d0
+     &           + xlmm**3/216d0
+     &           + (2633d0/31104d0 - (67d0*xlmm)/576d0
+     &           + xlmm**2/36d0)*inl
      &           + (82043d0*zeta3)/27648d0)
          endif
       endif
-      
+
       alsout = als*alsout
 
       return
@@ -201,19 +201,19 @@ c..   inloop: loop-order for decoupling
 c..   idir:   direction: -1: \alphas^(nl+1) -> \alphas^(nl)
 c..                      +1: \alphas^(nl) -> \alphas^(nl+1)
 c..   alsout: \alpha_s (output)
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if(inloop.ge.4)then
             write(6,*) '<function decalpha>: ',inloop,'-loop',
      &           ' decoupling not implemented.'
             write(6,*) 'Stopped.'
-            stop         
+            stop
       endif
 
       alsout = 1.d0
@@ -231,13 +231,13 @@ c..   \alphas^(nl+1) -> \alphas^(nl)
      &           +1.d0/36.d0*(dlog(muth*muth/massth/massth))**2)
          endif
          if(inloop.ge.3)then
-            xlmm = dlog(muth*muth/massth/massth) 
+            xlmm = dlog(muth*muth/massth/massth)
             alsout = alsout+als/pi*als/pi*als/pi*
-     &           (-58933d0/124416d0 - (8521d0*xlmm)/1728d0 
-     &           - (131d0*xlmm**2)/576d0 - xlmm**3/216d0 
+     &           (-58933d0/124416d0 - (8521d0*xlmm)/1728d0
+     &           - (131d0*xlmm**2)/576d0 - xlmm**3/216d0
      &           + inl*(2479/31104d0 + (409d0*xlmm)/1728d0
-     &           + zeta2/9d0) - (2d0*zeta2)/3d0 
-     &           - (2d0*zeta2*dlog(2.d0))/9d0 
+     &           + zeta2/9d0) - (2d0*zeta2)/3d0
+     &           - (2d0*zeta2*dlog(2.d0))/9d0
      &           - (80507d0*zeta3)/27648d0)
          endif
       endif
@@ -255,17 +255,17 @@ c..   \alphas^(nl) -> \alphas^(nl+1)
      &           +1.d0/36.d0*(dlog(muth*muth/massth/massth))**2)
          endif
          if(inloop.ge.3)then
-            xlmm = dlog(muth*muth/massth/massth) 
+            xlmm = dlog(muth*muth/massth/massth)
             alsout = alsout+als/pi*als/pi*als/pi*
-     &           (58933d0/124416d0 + (8941d0*xlmm)/1728d0 
-     &           + (511d0*xlmm**2)/576d0 + xlmm**3/216d0 
-     &           - (2479d0*inl)/31104d0 - (409d0*xlmm*inl)/1728d0 
+     &           (58933d0/124416d0 + (8941d0*xlmm)/1728d0
+     &           + (511d0*xlmm**2)/576d0 + xlmm**3/216d0
+     &           - (2479d0*inl)/31104d0 - (409d0*xlmm*inl)/1728d0
      &           + (2d0*zeta2)/3d0 - (inl*zeta2)/9d0
-     &           + (2d0*zeta2*dlog(2.d0))/9d0 
+     &           + (2d0*zeta2*dlog(2.d0))/9d0
      &           + (80507d0*zeta3)/27648d0)
          endif
       endif
-      
+
       alsout = als*alsout
 
       return
@@ -279,24 +279,24 @@ c..     ------------------------------------------------------------
       subroutine rundecalpha(als0,mu0,mu1,alsout)
 c..
 c..   running and decoupling for \alpha_s
-c..   
+c..
 c..   als0:   \alpha_s (input)
 c..   mu0:    scale of \alpha_s (input)
 c..   mu1:    scale of \alpha_s (output)
 c..   alsout: \alpha_s (output)
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if(infini.ne.5)then
             write(6,*) '<function rundecalpha>: '
             write(6,*) '       Initial nf has to be nf=5.'
             write(6,*) '       Stopped.'
-            stop         
+            stop
       endif
 
       infact = infini
@@ -370,21 +370,21 @@ c..   inloop: loop-order for decoupling
 c..   idir:   direction: -1: \alphas^(nl+1) -> \alphas^(nl)
 c..                      +1: \alphas^(nl) -> \alphas^(nl+1)
 c..   mqout:  m_q^(inl+1)(massth) (output)
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if(inloop.ge.4)then
          write(6,*) '<function decmass>: ',inloop,'-loop',
      &        ' decoupling not implemented.'
          write(6,*) 'Stopped.'
-         stop         
+         stop
       endif
-      
+
       mqout = 1.d0
 
 c..   m_q^(nl+1) -> m_q^(nl)
@@ -392,32 +392,32 @@ c..   m_q^(nl+1) -> m_q^(nl)
          write(6,*) '<function decmass>: ',
      &        ' this direction not implemented.'
          write(6,*) 'Stopped.'
-         stop         
+         stop
       endif
-      
+
 c..   m_q^(nl) -> m_q^(nl+1)
       if(idir.eq.1)then
          if(inloop.ge.1)then
             mqout = mqout
          endif
          if(inloop.ge.2)then
-            xlmm = dlog(muth*muth/massth/massth) 
+            xlmm = dlog(muth*muth/massth/massth)
             mqout = mqout+als/pi*als/pi*
-     &           (-89.d0/432.d0 + (5.d0*xlmm)/36.d0 
+     &           (-89.d0/432.d0 + (5.d0*xlmm)/36.d0
      &           - xlmm**2/12.d0)
          endif
          if(inloop.ge.3)then
             mqout = mqout+als/pi*als/pi*als/pi*
-     &           (-2951.d0/2916 + b4/36.d0 
-     &           - (155.d0*xlmm**2)/432.d0 
-     &           - (35.d0*xlmm**3)/216.d0 
-     &           + inl*(-1327.d0/11664.d0 + (53.d0*xlmm)/432.d0 
-     &           + xlmm**3/108.d0 + (2.d0*zeta3)/27.d0) 
-     &           + xlmm*(133.d0/2592.d0 + (5.d0*zeta3)/6.d0) 
+     &           (-2951.d0/2916 + b4/36.d0
+     &           - (155.d0*xlmm**2)/432.d0
+     &           - (35.d0*xlmm**3)/216.d0
+     &           + inl*(-1327.d0/11664.d0 + (53.d0*xlmm)/432.d0
+     &           + xlmm**3/108.d0 + (2.d0*zeta3)/27.d0)
+     &           + xlmm*(133.d0/2592.d0 + (5.d0*zeta3)/6.d0)
      &           + (407.d0*zeta3)/864.d0 - (5.d0*zeta4)/4.d0)
          endif
       endif
-      
+
       mqout = mq*mqout
 
       return
@@ -431,29 +431,29 @@ c..   ------------------------------------------------------------
       subroutine rundecmass(mq0,inf,mu0,mu1,mqout)
 c..
 c..   running and decoupling for m_q
-c..   
-c..   Note: this routine is used in order to compute mc(s) with 
+c..
+c..   Note: this routine is used in order to compute mc(s) with
 c..   nf=5 and nf=6 and mb(s) with nf=6 from their respective input
 c..   values mc(mc) and mb(mb).
-c..   
+c..
 c..   mq0:   m_q^(inf) (input)
 c..   inf:   number of active flavours (initially)
 c..   mu0:   scale of m_q (initial)
 c..   mu1:   scale of m_q (final)
 c..   mqout: m_q (output)
-c..   
+c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if(infini.ne.5)then
             write(6,*) '<function rundecmass>: '
             write(6,*) '       Initial nf has to be nf=5.'
             write(6,*) '       Stopped.'
-            stop         
+            stop
       endif
 
 c..   implement only the cases needed for rhad.f
@@ -461,19 +461,19 @@ c..   implement only the cases needed for rhad.f
          write(6,*) '<function rundecmass>: nf=',inffin,
      &        ' <',inf,': not allowd.'
          write(6,*) 'Stopped.'
-         stop         
+         stop
       endif
       if(.not.((inf.eq.4).or.(inf.eq.5).or.(inf.eq.6))) then
          write(6,*) '<function rundecmass>: ',
      &        'case not implemented.'
          write(6,*) 'Stopped.'
-         stop                 
+         stop
       endif
       if(.not.((inffin.eq.4).or.(inffin.eq.5).or.(inffin.eq.6))) then
          write(6,*) '<function rundecmass>: ',
      &        'case not implemented.'
          write(6,*) 'Stopped.'
-         stop                 
+         stop
       endif
 
 c..   initialize alphas
@@ -502,7 +502,7 @@ c..   determine as^(4)(mu0act), as^(4)(mub), as(5)(mub) from as^(5)(Mz)
          call runalpha(als4mub/pi,mub,mu0act,inf0-1,iord,0,apiout)
          als4mu0act = pi*apiout
 c     print*,als5mub,als4mub,als4mu0act
-c..   determine mq^(4)(mub)         
+c..   determine mq^(4)(mub)
          call runmass(mqact,als4mu0act/pi,als4mub/pi,infact,iord,mqout)
          mqact = mqout
 c..   "undo" decoupling of bottom quark
@@ -515,13 +515,13 @@ c..   "undo" decoupling of bottom quark
             write(6,*) '<function rundecmass>: ',
      &           'case not implemented.'
             write(6,*) 'Stopped.'
-            stop                 
+            stop
          endif
          infact    = infact+1
          mqact     = mqout
          mu0act    = mub
          alsmu0act = als5mub
-c..   determine as^(infact)(mu1) 
+c..   determine as^(infact)(mu1)
          call runalpha(alsmu0act/pi,mu0act,mu1,infact,iord,0,apiout)
          alsmu1 = pi*apiout
       endif
@@ -539,9 +539,9 @@ c..   determine as^(5)(mu0act), as^(5)(mut), as(6)(mut) from as^(5)(Mz)
          als5mut = alsact
          als6mut = alsout
          call runalpha(alsini/pi,muini,mu0act,inf0,iord,0,apiout)
-         als5mu0act = pi*apiout 
+         als5mu0act = pi*apiout
 c     print*,als6mut,als5mut,als5mu0act
-c..   determine mq^(5)(mut)         
+c..   determine mq^(5)(mut)
          call runmass(mqact,als5mu0act/pi,als5mut/pi,infact,iord,mqout)
          mqact = mqout
 c..   "undo" decoupling of top quark
@@ -554,13 +554,13 @@ c..   "undo" decoupling of top quark
             write(6,*) '<function rundecmass>: ',
      &           'case not implemented.'
             write(6,*) 'Stopped.'
-            stop                 
+            stop
          endif
          mqact     = mqout
          infact    = infact+1
          mu0act    = mut
          alsmu0act = als6mut
-c..   determine as^(infact)(mu1) 
+c..   determine as^(infact)(mu1)
          call runalpha(alsmu0act/pi,mu0act,mu1,infact,iord,0,apiout)
          alsmu1 = pi*apiout
       endif
@@ -752,7 +752,7 @@ C-{{{ subroutine runalpha:
       subroutine runalpha(api0,mu0,mu,nf,nloop,verb,apiout)
 C..
 c..   NEEDS:  rkck.f rkqs.f odeint.f  (from Numerical Recipes)
-c..   
+c..
 c..   Note:  api = {\alpha_s \over \pi}
 C..
 c..   purpose : computes the value of api(mu) from api(mu0)
@@ -763,7 +763,7 @@ c..   api0  :  api(mu0)
 c..   nf    :  number of flavors
 c..   nloop :  number of loops
 c..   verb  :  0=quiet,  1=verbose
-c..   apiout:  api(mu)    
+c..   apiout:  api(mu)
 C..
       implicit real*8 (a-h,o-z)
       INTEGER KMAXX,NMAX,NVAR
@@ -900,12 +900,12 @@ C-{{{ subroutine runmass:
 c..
 c..   evaluates the running of the MS-bar quark mass
 c..   by expanding the equation
-c..   
+c..
 c..   m(mu) = m(mu0) * exp( \int_a0^af dx gammam(x)/x/beta(x) )
-c..   
+c..
 c..   in terms of alpha_s. The results agree with RunDec.m.
-c..   
-c..   
+c..
+c..
 c..   Input:
 c..   ------
 c..   mass0  :  m(mu0)
@@ -917,7 +917,7 @@ c..
 c..   Output:
 c..   -------
 c..   massout:  m(muf)
-c..   
+c..
       implicit real*8 (a-h,o-z)
       real*8 mass0,massout,massfun
       external massfun
@@ -1021,4 +1021,3 @@ C
       end
 
 C-}}}
-

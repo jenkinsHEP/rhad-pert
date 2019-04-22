@@ -1,8 +1,8 @@
 c..
 c..   rhad.f
-c..   
+c..
 c..   This is the main file for `rhad'.
-c..   
+c..
 c..
 C-{{{ header:
 
@@ -12,11 +12,11 @@ c..   ------------------------------------------------------------
 c..   Program: R(s)
 c..   Authors: R. Harlander (CERN) and M. Steinhauser (U Hamburg)
 c..   Date   : December 2002
-c..   Changes: [March 30, 2009] v1.01 
+c..   Changes: [March 30, 2009] v1.01
 c..            - exact results at alphas^4 included
 c..   ------------------------------------------------------------
 c..   for documentation, see
-c..   
+c..
 c..   ***********
 c..   "rhad: a program for the evaluation of the hadronic
 c..      R-ratio in the perturbative regime of QCD"
@@ -45,7 +45,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       rhad = 0.d0
 
@@ -76,7 +76,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if (.not.la3sing) then
          rsinglet = 0.d0
@@ -85,24 +85,24 @@ c..
 
       rtmp = 0.d0
 
-      rtmp = rtmp 
+      rtmp = rtmp
      &     + (vup + vdown + vstrange)**2 * rv3sing(scms,0.d0,0.d0)
-         
+
       if (lcharm) then
-         rtmp = rtmp 
+         rtmp = rtmp
      &        + 2*(vup + vdown + vstrange)*vcharm * rv3sing(scms,mc,0
      &        .d0)+ vcharm**2 * rv3sing(scms,mc,mc)
       endif
-         
+
       if (lbottom) then
-         rtmp = rtmp 
+         rtmp = rtmp
      &        + 2*(vup + vdown + vstrange)*vbottom * rv3sing(scms,mb
      &        ,0.d0)+ 2*vcharm*vbottom * rv3sing(scms,mb,0.d0)+
      &        vbottom**2 * rv3sing(scms,mb,mb)
       endif
 
       if (ltop) then
-         rtmp = rtmp 
+         rtmp = rtmp
      &        + 2*(vup + vdown + vstrange)*vtop * rv3sing(scms,mt,0
      &        .d0)+ 2*vcharm*vtop * rv3sing(scms,mt,0.d0)+ 2*vbottom
      &        *vtop * rv3sing(scms,mt,0.d0)+ vtop**2 * rv3sing(scms
@@ -128,7 +128,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if (.not.lqed) then
          rqed = 0.d0
@@ -171,7 +171,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       mq = 0.d0
       nl = 3.d0
@@ -190,14 +190,14 @@ c..   1-loop:
 
       if (iord.ge.2) then
 c..   2-loop:
-         rv2l = 
+         rv2l =
      &        + r0cf(scms)      ! cf**2
      &        + r0ca(scms)      ! ca*cf
      &        + nl * r0nl(scms) ! nl
      &        + r0db(scms,mc,lcharm)
      &        + r0db(scms,mb,lbottom)
      &        + r0db(scms,mt,ltop)
-         
+
          rv = rv + api**2*rv2l
       endif
 
@@ -213,14 +213,14 @@ c..   3-loop:
          else
             rv3l = rv3m0(scms) + delr03(scms,mt)
          endif
-         
+
          rv = rv + api**3*rv3l
       endif
-         
+
       if (iord.ge.4) then
 c..   4-loop:
          rv4l = rv4m0(scms)
-         
+
          rv = rv + api**4*rv4l
       endif
 
@@ -244,7 +244,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       mq = 0.d0
       nl = 3.d0
@@ -263,7 +263,7 @@ c..   1-loop:
 
       if (iord.ge.2) then
 c..   2-loop:
-         rv2l = 
+         rv2l =
      &        + r0cf(scms)      ! cf**2
      &        + r0ca(scms)      ! ca*cf
      &        + nl * r0nl(scms) ! nl
@@ -286,14 +286,14 @@ c..   3-loop:
          else
             rv3l = rv3m0(scms) + delr03(scms,mt)
          endif
-         
+
          rv = rv + api**3*rv3l
       endif
-         
+
       if (iord.ge.4) then
 c..   4-loop:
          rv4l = rv4m0(scms)
-         
+
          rv = rv + api**4*rv4l
       endif
 
@@ -317,7 +317,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       mq = 0.d0
       nl = 3.d0
@@ -336,7 +336,7 @@ c..   1-loop:
 
       if (iord.ge.2) then
 c..   2-loop:
-         rv2l = 
+         rv2l =
      &        + r0cf(scms)      ! cf**2
      &        + r0ca(scms)      ! ca*cf
      &        + nl * r0nl(scms) ! nl
@@ -359,14 +359,14 @@ c..   3-loop:
          else
             rv3l = rv3m0(scms) + delr03(scms,mt)
          endif
-         
+
          rv = rv + api**3*rv3l
       endif
-         
+
       if (iord.ge.4) then
 c..   4-loop:
          rv4l = rv4m0(scms)
-         
+
          rv = rv + api**4*rv4l
       endif
 
@@ -389,7 +389,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if (.not.lcharm) then
          rcqrk = 0.d0
@@ -416,7 +416,7 @@ c..   1-loop:
 
 
       if (iord.ge.2) then
-c..   2-loop:      
+c..   2-loop:
          rv2l =
      &        + rvcf(scms,mc)   ! cf**2
      &        + rvca(scms,mc)   ! ca*cf
@@ -430,11 +430,11 @@ c..   2-loop:
 
          rv = rv + api**2*rv2l
       endif
-         
-         
+
+
       if (iord.ge.3) then
 c..   3-loop:
-         
+
          if (.not.lbottom) then
             rv3l = rv3(scms,mc)
          elseif (.not.ltop) then
@@ -473,7 +473,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if (.not.lbottom) then
          rbqrk = 0.d0
@@ -500,7 +500,7 @@ c..   1-loop:
 
 
       if (iord.ge.2) then
-c..   2-loop:      
+c..   2-loop:
          rv2l =
      &        + rvcf(scms,mb)   ! cf**2
      &        + rvca(scms,mb)   ! ca*cf
@@ -514,8 +514,8 @@ c..   2-loop:
 
          rv = rv + api**2*rv2l
       endif
-         
-         
+
+
       if (iord.ge.3) then
 c..   3-loop:
 
@@ -524,7 +524,7 @@ c..   3-loop:
          else
             rv3l = rv3m0(scms) + delr03(scms,mt)
          endif
-         
+
          rv = rv + api**3*rv3l
       endif
 
@@ -555,7 +555,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       if (.not.ltop) then
          rtqrk = 0.d0
@@ -582,7 +582,7 @@ c..   1-loop:
 
 
       if (iord.ge.2) then
-c..   2-loop:      
+c..   2-loop:
          rv2l =
      &        + rvcf(scms,mt)   ! cf**2
      &        + rvca(scms,mt)   ! ca*cf
@@ -596,12 +596,12 @@ c..   2-loop:
 
          rv = rv + api**2*rv2l
       endif
-         
-         
+
+
       if (iord.ge.3) then
 c..   3-loop:
          rv3l = rv3(scms,mt)
-         
+
          rv = rv + api**3*rv3l
       endif
 
@@ -632,7 +632,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
 c..   program version:
       kversion = '1.01'
@@ -647,13 +647,13 @@ c..   numerical constants:
       a4        = 0.51747906167389938633d0  !  Li_4(1/2)
       b4        = -1.7628000870737708641d0
 
-c..   initial value of alpha_s is defined at 'infini' flavors 
+c..   initial value of alpha_s is defined at 'infini' flavors
 c..   and scale mz:
-      infini    = 5      
+      infini    = 5
       mz        = 91.1876d0
 
 c..   number of colors:
-      nc        = 3.d0 
+      nc        = 3.d0
 
 c..   electromagnetic interaction
       alpha	= 1.d0/137.0359895d0 ! electromagnetic coupling
@@ -695,7 +695,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
 c..   load non-user parameters:
       call fixpar(scms)
@@ -731,7 +731,7 @@ c..   compute alpha_s(mu)
       call rundecalpha(alphasmz,mz,mu,als)
       api = als/pi
 
-      if (lmsbar) then         
+      if (lmsbar) then
 c..   compute mq(mu) from mq(mq):
          if (lcharm) then
             call rundecmass(massc,4,massc,mu,mc)
@@ -743,7 +743,7 @@ c..   compute mq(mu) from mq(mq):
          else
             call mms2mos(massb,5,iord,mb)
          endif
-         if (ltop) then  
+         if (ltop) then
             call rundecmass(masst,6,masst,mu,mt)
          else
             call mms2mos(masst,6,iord,mt)
@@ -791,7 +791,7 @@ c..   Perform some sanity checks on the input.
 c..   Common block must be filled before calling.
 c..
 c..   scms = center-of-mass energy squared
-c..   
+c..
 c..   Returns
 c..   lpass = .true.   if checks are passed,
 c..   lpass = .false.  otherwise
@@ -801,7 +801,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       lpass = .true.
 
@@ -850,7 +850,7 @@ C-{{{ subroutine printpar(scms):
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
       write(iunit,3001) kversion
  3001 format(/,
@@ -863,7 +863,7 @@ C-{{{ subroutine printpar(scms):
  3005 format(
      &     'Order of calculation: ',I3,/
      &     )
-      
+
 
       write(iunit,3004) dsqrt(scms),mu,thrc,thrb,thrt
  3004 format(
@@ -874,7 +874,7 @@ C-{{{ subroutine printpar(scms):
      &     '  thrb     =  ',1f8.3,' GeV'/
      &     '  thrt     =  ',1f8.3,' GeV'/
      &     )
-      
+
 
       write(iunit,3014) inffin
  3014 format(
@@ -894,7 +894,7 @@ C-{{{ subroutine printpar(scms):
      &     ,')'/)
 
 
-      
+
       write(iunit,3003) 1/alpha,alphasmz,mz,api*pi
  3003 format(
      &     'Coupling constants:',/,
@@ -903,8 +903,8 @@ C-{{{ subroutine printpar(scms):
      &     '             [ Mz = ',1f8.4,' GeV ]'/
      &     '  alpha_s(mu)  =  ',1f12.10,/
      &     )
-      
-      
+
+
       if (lmsbar) then
          write(iunit,3013)
          if (lcharm) then
@@ -947,7 +947,7 @@ C-{{{ subroutine printpar(scms):
      &     '  alphas^3 m^4 included  :',L2,/
      &     '  alphas^4 m^2 included  :',L2
      &     )
-      
+
 C      write(iunit,3007) thrc,thrclow,thrb,thrblow,thrt,thrtlow
 C 3007 format(
 C     &     'Limits:',/,
@@ -960,10 +960,7 @@ C     &     '  thrtlow  =  ',1f8.3,' GeV',/
 C     &     )
 
       write(iunit,*) '-- end of parameters --'
-      
+
       end
 
 C-}}}
-
-
-

@@ -13,8 +13,8 @@ C-{{{ function rv3:
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       rv3 = rv3m0(scms) + rv3m2(scms,mq) + rv3m4(scms,mq)
 
@@ -30,8 +30,8 @@ C-{{{ function delr03:
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       delr03 = delr03m2(scms,mq) + delr03m4(scms,mq)
 
@@ -55,8 +55,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       dlmus = dlog(mu*mu/scms)
 
@@ -90,8 +90,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       if (.not.la3m2) then
          rv3m2 = 0.d0
@@ -141,8 +141,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       if (.not.la3m4) then
          rv3m4 = 0.d0
@@ -216,8 +216,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       if (.not.la3m2) then
          delr03m2 = 0.d0
@@ -228,7 +228,7 @@ c..
 
       dlmus = dlog(mu*mu/scms)
       dlms = dlog(m2s)
-      
+
       delr03m2 = m2s*(-80 + (32*inffin)/9.d0 + 60*zeta3 - (8*inffin
      &     *zeta3)/3.d0)
 
@@ -252,8 +252,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       if (.not.la3m4) then
          delr03m4 = 0.d0
@@ -264,7 +264,7 @@ c..
 
       dlmus = dlog(mu*mu/scms)
       dlms = dlog(m2s)
-      
+
       if (lmsbar) then
          delr03m4 = m2s**2*(-67.40972222222223d0 + 2*dlms**2 + (457
      &        *inffin)/108.d0+ 15 *zeta2-(2*inffin*zeta2)/3.d0 + 25
@@ -294,18 +294,18 @@ c..   ------------------------------------------------------------
       function rv3sing(scms,m1,m2)
 c..
 c..   three-loop singlet
-c..   
+c..
 c..   vector case
 c..
 c..   scms : cms energy squared
-c..   
+c..
 c..
       implicit	real*8(a-h,m-z)
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       m12s = m1*m1/scms
       m22s = m2*m2/scms
@@ -313,11 +313,11 @@ c..
       rv3sing = 55/216.d0 - 5/9.d0*zeta3
 
       if (la3m4) then
-         rv3sing = rv3sing 
+         rv3sing = rv3sing
      &        + m12s*m12s * ( -10/9.d0 + 25/3.d0*zeta3 )
      &        + m22s*m22s * ( -10/9.d0 + 25/3.d0*zeta3 )
       endif
-         
+
 c..   there are no ml^2 corrections
 
       rv3sing = rv3sing
@@ -335,8 +335,8 @@ C-{{{ function rv4:
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       rv4 = rv4m0(scms) + rv4m2(scms,mq)
 
@@ -360,10 +360,10 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
 
-      rv4m0 = 
+      include 'common/common.f'
+
+      rv4m0 =
      &        + r04(scms)
      &        + inffin * r04nl(scms)
      &        + inffin**2 * r04nl2(scms)
@@ -389,8 +389,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       if (.not.la4m2) then
          rv4m2 = 0.d0
@@ -404,65 +404,65 @@ c      r24nf01 = 7114.45d0 - 1432.21d0 * inffin
 c      r24nf01 = 7.11d3 - 1.43d3 * inffin
 
 c..   exact result
-      r24nf01 =   6225.83637573497986647983825872 - 
+      r24nf01 =   6225.83637573497986647983825872 -
      -     1364.03887327264406555898166085*inffin
-      
+
       dlmus = dlog(mu*mu/scms)
       dlms = dlog(m2s)
 
       if (lmsbar) then
-         rv4m2 = 
-     -        m2s*((204009*dlmus**2)/32. + (11685*dlmus**3)/16. 
-     -        + r24nf01 + 
-     -     inffin**3*(-1.3914609053497942 - (13*dlmus**2)/36. - 
-     -        dlmus**3/18. + dlmus*(-1.1574074074074074 + zeta2/3.) + 
-     -        (13*zeta2)/18.) + 
-     -     dlmus*(28444.302083333332 
-     -        - (35055*zeta2)/8. + (10045*zeta3)/6. - 
-     -        (214225*zeta5)/24.) + 
-     -     inffin**2*(189.18312757201647 + (1121*dlmus**2)/36. + 
-     -        (143*dlmus**3)/36. - (1121*zeta2)/18. + (13*zeta3)/324. + 
-     -        (53*zeta3**2)/9. + 
-     -        dlmus*(122.01273148148148 - (143*zeta2)/6. 
-     -        + (233*zeta3)/27. - 
-     -           (1045*zeta5)/54.) - (3610*zeta5)/81.) + 
-     -     inffin*((-19301*dlmus**2)/24. - (2249*dlmus**3)/24. + 
-     -        dlmus*(-3471.042824074074 + (2249*zeta2)/4. - 
+         rv4m2 =
+     -        m2s*((204009*dlmus**2)/32. + (11685*dlmus**3)/16.
+     -        + r24nf01 +
+     -     inffin**3*(-1.3914609053497942 - (13*dlmus**2)/36. -
+     -        dlmus**3/18. + dlmus*(-1.1574074074074074 + zeta2/3.) +
+     -        (13*zeta2)/18.) +
+     -     dlmus*(28444.302083333332
+     -        - (35055*zeta2)/8. + (10045*zeta3)/6. -
+     -        (214225*zeta5)/24.) +
+     -     inffin**2*(189.18312757201647 + (1121*dlmus**2)/36. +
+     -        (143*dlmus**3)/36. - (1121*zeta2)/18. + (13*zeta3)/324. +
+     -        (53*zeta3**2)/9. +
+     -        dlmus*(122.01273148148148 - (143*zeta2)/6.
+     -        + (233*zeta3)/27. -
+     -           (1045*zeta5)/54.) - (3610*zeta5)/81.) +
+     -     inffin*((-19301*dlmus**2)/24. - (2249*dlmus**3)/24. +
+     -        dlmus*(-3471.042824074074 + (2249*zeta2)/4. -
      -           (15043*zeta3)/54. + (44935*zeta5)/54.)))
       else
-         rv4m2 =          
-     -        m2s*(-11299.926126742352 
-     -        + (178849*dlms)/24. - (2313*dlms**2)/8. + 
-     -     (21*dlms**3)/2. + (2669.90625 + (1089*dlms)/2.)*dlmus**2 + 
-     -     (3993*dlmus**3)/16. + r24nf01 + 
-     -     inffin**3*(-1.3914609053497942 - (13*dlmus**2)/36. - 
-     -        dlmus**3/18. + dlmus*(-1.1574074074074074 + zeta2/3.) + 
-     -        (13*zeta2)/18.) - 1715.7734016237346*zeta2 - 
-     -     620.1837578886431*dlms*zeta2 - (9655*zeta3)/18. + 
-     -     (938*dlms*zeta3)/3. + (1439*zeta2*zeta3)/3. 
-     -        + (1565*zeta4)/6. + 
-     -     dlmus*(16839.03125 + (6849*dlms)/2. - (297*dlms**2)/4. - 
-     -      4080.370427833913*zeta2 
-     -        + (2761*zeta3)/2. - (57475*zeta5)/8.) + 
-     -     inffin**2*(176.31635802469137 
-     -        + (199*dlms)/18. - (13*dlms**2)/6. + 
-     -        (2*dlms**3)/9. 
-     -        + (23.75 + 2*dlms)*dlmus**2 + (11*dlmus**3)/4. - 
-     -        (415*zeta2)/6. + (4*dlms*zeta2)/3. - (995*zeta3)/324. + 
-     -        (53*zeta3**2)/9. + 
-     -        dlmus*(105.13310185185185 + (26*dlms)/3. - dlms**2 - 
-     -           (53*zeta2)/2. + (233*zeta3)/27. - (1045*zeta5)/54.) - 
-     -        (3610*zeta5)/81.) 
-     -        + (18925*zeta5)/9. - (5225*dlms*zeta5)/3. + 
-     -     inffin*(929.842802692714 
-     -        - (35899*dlms)/54. + (133*dlms**2)/2. - 
-     -        (10*dlms**3)/3. + (-455.375 - 66*dlms)*dlmus**2 - 
-     -        (363*dlmus**3)/8. + 245.51811785803167*zeta2 + 
-     -        17.636548370346958*dlms*zeta2 + (10622*zeta3)/81. - 
-     -       (1436*dlms*zeta3)/27. - (610*zeta4)/9. - (8360*zeta5)/81. + 
-     -        (2090*dlms*zeta5)/27. + 
-     -        dlmus*(-2476.3576388888887 - 370*dlms + 21*dlms**2 + 
-     -           593.7951774444796*zeta2 - (4069*zeta3)/18. + 
+         rv4m2 =
+     -        m2s*(-11299.926126742352
+     -        + (178849*dlms)/24. - (2313*dlms**2)/8. +
+     -     (21*dlms**3)/2. + (2669.90625 + (1089*dlms)/2.)*dlmus**2 +
+     -     (3993*dlmus**3)/16. + r24nf01 +
+     -     inffin**3*(-1.3914609053497942 - (13*dlmus**2)/36. -
+     -        dlmus**3/18. + dlmus*(-1.1574074074074074 + zeta2/3.) +
+     -        (13*zeta2)/18.) - 1715.7734016237346*zeta2 -
+     -     620.1837578886431*dlms*zeta2 - (9655*zeta3)/18. +
+     -     (938*dlms*zeta3)/3. + (1439*zeta2*zeta3)/3.
+     -        + (1565*zeta4)/6. +
+     -     dlmus*(16839.03125 + (6849*dlms)/2. - (297*dlms**2)/4. -
+     -      4080.370427833913*zeta2
+     -        + (2761*zeta3)/2. - (57475*zeta5)/8.) +
+     -     inffin**2*(176.31635802469137
+     -        + (199*dlms)/18. - (13*dlms**2)/6. +
+     -        (2*dlms**3)/9.
+     -        + (23.75 + 2*dlms)*dlmus**2 + (11*dlmus**3)/4. -
+     -        (415*zeta2)/6. + (4*dlms*zeta2)/3. - (995*zeta3)/324. +
+     -        (53*zeta3**2)/9. +
+     -        dlmus*(105.13310185185185 + (26*dlms)/3. - dlms**2 -
+     -           (53*zeta2)/2. + (233*zeta3)/27. - (1045*zeta5)/54.) -
+     -        (3610*zeta5)/81.)
+     -        + (18925*zeta5)/9. - (5225*dlms*zeta5)/3. +
+     -     inffin*(929.842802692714
+     -        - (35899*dlms)/54. + (133*dlms**2)/2. -
+     -        (10*dlms**3)/3. + (-455.375 - 66*dlms)*dlmus**2 -
+     -        (363*dlmus**3)/8. + 245.51811785803167*zeta2 +
+     -        17.636548370346958*dlms*zeta2 + (10622*zeta3)/81. -
+     -       (1436*dlms*zeta3)/27. - (610*zeta4)/9. - (8360*zeta5)/81. +
+     -        (2090*dlms*zeta5)/27. +
+     -        dlmus*(-2476.3576388888887 - 370*dlms + 21*dlms**2 +
+     -           593.7951774444796*zeta2 - (4069*zeta3)/18. +
      -           (13585*zeta5)/18.)))
       endif
 
@@ -484,8 +484,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       dlnmus = dlog(mu**2/scms)
 
@@ -499,7 +499,7 @@ c..   logarithms:
       r04 = r04 + (1331*dlnmus**3)/64. + dlnmus**2*(388.8671875 - (3993
      &     *zeta3)/16.) +dlnmus*(2709.2447916666665 - (1331*pi2)/64. -
      &     (38643*zeta3)/16. +(3025*zeta5)/8.)
-      
+
 
       return
       end
@@ -519,8 +519,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       dlnmus = dlog(mu**2/scms)
 
@@ -553,8 +553,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       dlnmus = dlog(mu**2/scms)
 
@@ -587,8 +587,8 @@ c..
       implicit	integer(i,j)
       implicit	character*60(k)
       implicit  logical(l)
-      
-      include 'common.f'
+
+      include 'common/common.f'
 
       dlnmus = dlog(mu**2/scms)
 
@@ -607,9 +607,3 @@ c..   logarithms:
       end
 
 C-}}}
-
-
-
-
-
-

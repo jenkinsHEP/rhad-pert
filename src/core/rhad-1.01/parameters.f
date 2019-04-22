@@ -12,7 +12,7 @@ c..
       implicit	character*60(k)
       implicit  logical(l)
 
-      include 'common.f'
+      include 'common/common.f'
 
 c..   verbose mode:
       lverbose = .true.
@@ -68,5 +68,3 @@ c..   some switches
       end
 
 C-}}}
-
-
