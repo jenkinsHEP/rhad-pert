@@ -3,7 +3,7 @@ C-{{{ subroutine parameters:
 
 c..   ------------------------------------------------------------
 
-      subroutine parameters(scms)
+      subroutine parameters(scms, mu_msbar, alpha_s, m_c, m_b, m_t)
 c..
 c..   User-defined parameters.
 c..
@@ -15,27 +15,27 @@ c..
       include 'common/common.f'
 
 c..   verbose mode:
-      lverbose = .true.
+      lverbose = .false.
 
 c..   output unit for parameter list (6 = STDOUT)
       iunit = 6
 
 c..   order or calculation:
-      iord  = 4
+      iord  = 3
 
 c..   strong coupling constant at scale mz (5 active flavors):
-      alphasmz  = 0.118d0
+      alphasmz  = alpha_s
 
 c..   use MS-bar or pole quark mass?  (.true. == MS-bar mass)
-      lmsbar    = .false.
+      lmsbar    = .true.
 
 c..   masses
-      massc      = 1.65d0        ! charm
-      massb      = 4.75d0        ! bottom
-      masst      = 175.d0        ! top
+      massc      = m_c        ! charm
+      massb      = m_b        ! bottom
+      masst      = m_t        ! top
 
 c..   renormalization scale:
-      mu        = dsqrt(scms)
+      mu        = mu_msbar
 
 c..   decoupling scales:
       muc       = 2.d0*massc    ! charm
